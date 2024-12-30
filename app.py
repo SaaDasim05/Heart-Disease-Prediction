@@ -9,7 +9,7 @@ from sklearn.metrics import mean_squared_error
 # This is simulated data for demonstration purposes
 data = {
     'Age': np.random.randint(29, 78, 100),
-    'Sex': np.random.choice([0, 1], 100),
+    'Gender': np.random.choice([0, 1], 100),
     'Cp': np.random.choice([0, 1, 2, 3], 100),
     'Trestbps': np.random.randint(94, 201, 100),
     'Chol': np.random.randint(126, 565, 100),
@@ -45,7 +45,7 @@ st.write("This app predicts the likelihood of heart disease based on user-provid
 with st.expander("Feature Descriptions"):
     st.write("""
     1. **Age**: Age in years (29 to 77)
-    2. **Sex**: Gender (1 = male, 0 = female)
+    2. **Gender**: Gender (1 = male, 0 = female)
     3. **Cp**: Chest pain type:
         - 0: typical angina
         - 1: atypical angina
@@ -76,7 +76,7 @@ with st.expander("Feature Descriptions"):
 st.sidebar.header("Enter the Features:")
 user_input = {
     'Age': st.sidebar.slider("Age", 29, 77, 50),
-    'Sex': st.sidebar.selectbox("Sex", options=[0, 1], format_func=lambda x: "Female" if x == 0 else "Male"),
+    'Gender': st.sidebar.selectbox("Sex", options=[0, 1], format_func=lambda x: "Female" if x == 0 else "Male"),
     'Cp': st.sidebar.selectbox("Chest Pain Type", options=[0, 1, 2, 3],
                               format_func=lambda x: ["Typical Angina", "Atypical Angina", "Non-anginal Pain", "Asymptomatic"][x]),
     'Trestbps': st.sidebar.slider("Resting Blood Pressure", 94, 200, 120),
