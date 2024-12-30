@@ -7,6 +7,7 @@ from sklearn.metrics import mean_squared_error
 
 # Load a sample dataset (replace with actual heart disease dataset)
 # This is simulated data for demonstration purposes
+st.set_page_config(page_title="AI HEART DISEASE PREDICTION",page_icon="https://img.freepik.com/free-vector/novel-coronavirus-ncov-abstract-concept-vector-illustration-novel-coronavirus-disease-outbreak-ncov-infection-prevention-control-preventive-measures-covid-19-statistics-abstract-metaphor_335657-1595.jpg?t=st=1735579269~exp=1735582869~hmac=61ee56fcaed6fdadf3b9a50953b20681f83776170cbcddeb94b57eaf50b293c1&w=740")
 data = {
     'Age': np.random.randint(29, 78, 100),
     'Gender': np.random.choice([0, 1], 100),
