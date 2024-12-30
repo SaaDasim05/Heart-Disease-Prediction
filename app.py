@@ -76,7 +76,7 @@ with st.expander("Feature Descriptions"):
 st.sidebar.header("Enter the Features:")
 user_input = {
     'Age': st.sidebar.slider("Age", 29, 77, 50),
-    'Gender': st.sidebar.selectbox("Sex", options=[0, 1], format_func=lambda x: "Female" if x == 0 else "Male"),
+    'Gender': st.sidebar.selectbox("Gender", options=[0, 1], format_func=lambda x: "Female" if x == 0 else "Male"),
     'Cp': st.sidebar.selectbox("Chest Pain Type", options=[0, 1, 2, 3],
                               format_func=lambda x: ["Typical Angina", "Atypical Angina", "Non-anginal Pain", "Asymptomatic"][x]),
     'Trestbps': st.sidebar.slider("Resting Blood Pressure", 94, 200, 120),
@@ -99,9 +99,10 @@ user_df = pd.DataFrame([user_input])
 
 # Make prediction
 prediction = model.predict(user_df)[0]
+prediction_percentage = prediction * 100
 
 st.subheader("Prediction")
-st.write(f"The predicted likelihood of heart disease is: **{prediction:.2f}**")
+st.write(f"The predicted likelihood of heart disease is: **{prediction_percentage:.2f}%**")
 
 st.subheader("Model Evaluation")
 y_pred = model.predict(X_test)
