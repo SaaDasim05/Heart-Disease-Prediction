@@ -38,7 +38,7 @@ model.fit(X_train, y_train)
 
 # Streamlit app
 st.set_page_config(page_title="AI PREDICTION", layout="wide")
-st.title("Heart Disease Prediction")
+st.title("AI PREDICTION")
 
 st.markdown("""
     <style>
@@ -52,13 +52,13 @@ st.markdown("""
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
         .sidebar .sidebar-content {
-            background:#cae8cb;
+            background:#00ffcc;
             color: white;
         }
         .header {
             text-align: center;
             padding: 20px 0;
-            background: #cae8cb;
+            background: #00ffcc;
             color: white;
             border-radius: 15px;
         }
