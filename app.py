@@ -52,25 +52,25 @@ st.markdown("""
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
         .sidebar .sidebar-content {
-            background: #4CAF50;
+            background:#cae8cb;
             color: white;
         }
         .header {
             text-align: center;
             padding: 20px 0;
-            background: #4CAF50;
+            background: #cae8cb;
             color: white;
-            border-radius: 10px;
+            border-radius: 15px;
         }
         .logo {
-            width: 150px;
+            width: 120px;
             margin: 0 auto;
         }
     </style>
 """, unsafe_allow_html=True)
 
 # Logo and header
-st.markdown("<div class='header'><img class='logo' src='logo1.png' alt='Logo'><h1>Heart Disease Prediction</h1></div>", unsafe_allow_html=True)
+st.markdown("<div class='header'><img class='logo' src='logo.png' alt='Logo'><h1>Heart Disease Prediction</h1></div>", unsafe_allow_html=True)
 
 st.write("This app predicts the likelihood of heart disease based on user-provided features.")
 
