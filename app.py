@@ -70,7 +70,7 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # Logo and header
-st.markdown("<div class='header'><img class='logo' src='logo.png' alt='Logo'><h1>Heart Disease Prediction</h1></div>", unsafe_allow_html=True)
+st.markdown("<div class='header'><img class='logo' src='https://cdn4.iconfinder.com/data/icons/medical-business/512/medical_help-512.png' alt='Logo'><h1>Heart Disease Prediction</h1></div>", unsafe_allow_html=True)
 
 st.write("This app predicts the likelihood of heart disease based on user-provided features.")
 
