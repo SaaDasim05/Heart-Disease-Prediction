@@ -37,7 +37,7 @@ model = LinearRegression()
 model.fit(X_train, y_train)
 
 # Streamlit app
-st.set_page_config(page_title="Heart Disease Prediction", layout="wide")
+st.set_page_config(page_title="AI PREDICTION", layout="wide")
 st.title("Heart Disease Prediction")
 
 st.markdown("""
@@ -140,7 +140,7 @@ prediction_percentage = prediction * 100
 with col2:
     st.subheader("Prediction Result")
     st.markdown("""
-    <div style='background-color:#f9f9f9; border:1px solid #ddd; padding:15px; border-radius:5px; text-align:center;'>
+    <div style='background-color:#cccccc; border:1px solid #ddd; padding:15px; border-radius:15px; text-align:center;'>
         <span style='font-size:28px; font-weight:bold; color:#4CAF50;'>Predicted Likelihood of Heart Disease:</span>
         <br>
         <span style='font-size:32px; font-weight:bold;'>{:.2f}%</span>
