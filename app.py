@@ -61,6 +61,15 @@ st.markdown("""
             background: #00ffcc;
             color: white;
             border-radius: 15px;
+            transition:2s;
+        }
+        .header:hover {
+            text-align: center;
+            padding: 20px 0;
+            background: #00cca3;
+            color: white;
+            border-radius: 15px;
+            scale :1.1;
         }
         .logo {
             width: 120px;
