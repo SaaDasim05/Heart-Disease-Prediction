@@ -107,7 +107,7 @@ prediction_percentage = prediction * 100
 
 with col2:
     st.subheader("Prediction Result")
-    st.markdown(f"<div style='background-color:#f9f9f9; border:1px solid #ddd; padding:15px; border-radius:5px; text-align:center;'>
+    st.markdown("<div style='background-color:#f9f9f9; border:1px solid #ddd; padding:15px; border-radius:5px; text-align:center;'>
                  <span style='font-size:28px; font-weight:bold; color:#4CAF50;'>Predicted Likelihood of Heart Disease:</span>
                  <br>
                  <span style='font-size:32px; font-weight:bold;'>{prediction_percentage:.2f}%</span>
