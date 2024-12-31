@@ -40,6 +40,38 @@ model.fit(X_train, y_train)
 st.set_page_config(page_title="Heart Disease Prediction", layout="wide")
 st.title("Heart Disease Prediction")
 
+st.markdown("""
+    <style>
+        body {
+            background: #f2f2f2;
+        }
+        .main {
+            background: #ffffff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .sidebar .sidebar-content {
+            background: #4CAF50;
+            color: white;
+        }
+        .header {
+            text-align: center;
+            padding: 20px 0;
+            background: #4CAF50;
+            color: white;
+            border-radius: 10px;
+        }
+        .logo {
+            width: 150px;
+            margin: 0 auto;
+        }
+    </style>
+""", unsafe_allow_html=True)
+
+# Logo and header
+st.markdown("<div class='header'><img class='logo' src='logo1.png' alt='Logo'><h1>Heart Disease Prediction</h1></div>", unsafe_allow_html=True)
+
 st.write("This app predicts the likelihood of heart disease based on user-provided features.")
 
 # Sidebar for feature details
