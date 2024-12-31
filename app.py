@@ -7,10 +7,9 @@ from sklearn.metrics import mean_squared_error
 
 # Load a sample dataset (replace with actual heart disease dataset)
 # This is simulated data for demonstration purposes
-st.set_page_config(page_title="AI HEART DISEASE PREDICTION",page_icon="https://img.freepik.com/free-vector/novel-coronavirus-ncov-abstract-concept-vector-illustration-novel-coronavirus-disease-outbreak-ncov-infection-prevention-control-preventive-measures-covid-19-statistics-abstract-metaphor_335657-1595.jpg?t=st=1735579269~exp=1735582869~hmac=61ee56fcaed6fdadf3b9a50953b20681f83776170cbcddeb94b57eaf50b293c1&w=740")
 data = {
     'Age': np.random.randint(29, 78, 100),
-    'Gender': np.random.choice([0, 1], 100),
+    'Sex': np.random.choice([0, 1], 100),
     'Cp': np.random.choice([0, 1, 2, 3], 100),
     'Trestbps': np.random.randint(94, 201, 100),
     'Chol': np.random.randint(126, 565, 100),
@@ -38,15 +37,52 @@ model = LinearRegression()
 model.fit(X_train, y_train)
 
 # Streamlit app
+st.set_page_config(page_title="Heart Disease Prediction", layout="wide")
 st.title("Heart Disease Prediction")
 
 st.write("This app predicts the likelihood of heart disease based on user-provided features.")
 
-# Feature descriptions
-with st.expander("Feature Descriptions"):
+# Sidebar inputs
+st.sidebar.header("Enter the Features:")
+user_input = {
+    'Age': st.sidebar.slider("Age", 29, 77, 50),
+    'Sex': st.sidebar.selectbox("Sex", options=[0, 1], format_func=lambda x: "Female" if x == 0 else "Male"),
+    'Cp': st.sidebar.selectbox("Chest Pain Type", options=[0, 1, 2, 3],
+                              format_func=lambda x: ["Typical Angina", "Atypical Angina", "Non-anginal Pain", "Asymptomatic"][x]),
+    'Trestbps': st.sidebar.slider("Resting Blood Pressure", 94, 200, 120),
+    'Chol': st.sidebar.slider("Serum Cholesterol", 126, 564, 200),
+    'Fbs': st.sidebar.selectbox("Fasting Blood Sugar > 120 mg/dL", options=[0, 1], format_func=lambda x: "False" if x == 0 else "True"),
+    'Restecg': st.sidebar.selectbox("Resting ECG Results", options=[0, 1, 2],
+                                    format_func=lambda x: ["Normal", "ST-T Wave Abnormality", "Left Ventricular Hypertrophy"][x]),
+    'Thalach': st.sidebar.slider("Maximum Heart Rate Achieved", 71, 202, 150),
+    'Exang': st.sidebar.selectbox("Exercise-Induced Angina", options=[0, 1], format_func=lambda x: "No" if x == 0 else "Yes"),
+    'Oldpeak': st.sidebar.slider("Oldpeak", 0.0, 6.2, 1.0),
+    'Slope': st.sidebar.selectbox("Slope of Peak Exercise ST Segment", options=[0, 1, 2],
+                                  format_func=lambda x: ["Upsloping", "Flat", "Downsloping"][x]),
+    'Ca': st.sidebar.slider("Number of Major Vessels", 0, 3, 1),
+    'Thal': st.sidebar.selectbox("Thallium Heart Rate", options=[0, 1, 2],
+                                 format_func=lambda x: ["Normal", "Fixed Defect", "Reversible Defect"][x]),
+}
+
+# Convert user input to DataFrame
+user_df = pd.DataFrame([user_input])
+
+# Make prediction
+prediction = model.predict(user_df)[0]
+prediction_percentage = prediction * 100
+
+# Layout for results
+col1, col2 = st.columns(2)
+
+with col1:
+    st.subheader("Prediction Result")
+    st.markdown(f"<div style='font-size:28px; font-weight:bold; color:#4CAF50;'>Predicted Likelihood of Heart Disease: {prediction_percentage:.2f}%</div>", unsafe_allow_html=True)
+
+with col2:
+    st.subheader("Feature Details")
     st.write("""
     1. **Age**: Age in years (29 to 77)
-    2. **Gender**: Gender (1 = male, 0 = female)
+    2. **Sex**: Gender (1 = male, 0 = female)
     3. **Cp**: Chest pain type:
         - 0: typical angina
         - 1: atypical angina
@@ -73,38 +109,7 @@ with st.expander("Feature Descriptions"):
         - 2: Reversible defect
     """)
 
-# User inputs
-st.sidebar.header("Enter the Features:")
-user_input = {
-    'Age': st.sidebar.slider("Age", 29, 77, 50),
-    'Gender': st.sidebar.selectbox("Gender", options=[0, 1], format_func=lambda x: "Female" if x == 0 else "Male"),
-    'Cp': st.sidebar.selectbox("Chest Pain Type", options=[0, 1, 2, 3],
-                              format_func=lambda x: ["Typical Angina", "Atypical Angina", "Non-anginal Pain", "Asymptomatic"][x]),
-    'Trestbps': st.sidebar.slider("Resting Blood Pressure", 94, 200, 120),
-    'Chol': st.sidebar.slider("Serum Cholesterol", 126, 564, 200),
-    'Fbs': st.sidebar.selectbox("Fasting Blood Sugar > 120 mg/dL", options=[0, 1], format_func=lambda x: "False" if x == 0 else "True"),
-    'Restecg': st.sidebar.selectbox("Resting ECG Results", options=[0, 1, 2],
-                                    format_func=lambda x: ["Normal", "ST-T Wave Abnormality", "Left Ventricular Hypertrophy"][x]),
-    'Thalach': st.sidebar.slider("Maximum Heart Rate Achieved", 71, 202, 150),
-    'Exang': st.sidebar.selectbox("Exercise-Induced Angina", options=[0, 1], format_func=lambda x: "No" if x == 0 else "Yes"),
-    'Oldpeak': st.sidebar.slider("Oldpeak", 0.0, 6.2, 1.0),
-    'Slope': st.sidebar.selectbox("Slope of Peak Exercise ST Segment", options=[0, 1, 2],
-                                  format_func=lambda x: ["Upsloping", "Flat", "Downsloping"][x]),
-    'Ca': st.sidebar.slider("Number of Major Vessels", 0, 3, 1),
-    'Thal': st.sidebar.selectbox("Thallium Heart Rate", options=[0, 1, 2],
-                                 format_func=lambda x: ["Normal", "Fixed Defect", "Reversible Defect"][x]),
-}
-
-# Convert user input to DataFrame
-user_df = pd.DataFrame([user_input])
-
-# Make prediction
-prediction = model.predict(user_df)[0]
-prediction_percentage = prediction * 100
-
-st.subheader("Prediction")
-st.write(f"The predicted likelihood of heart disease is: **{prediction_percentage:.2f}%**")
-
+# Model evaluation
 st.subheader("Model Evaluation")
 y_pred = model.predict(X_test)
 st.write(f"Mean Squared Error on Test Data: {mean_squared_error(y_test, y_pred):.2f}")
