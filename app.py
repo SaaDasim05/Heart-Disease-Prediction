@@ -69,7 +69,7 @@ st.markdown("""
             background: #00cca3;
             color: white;
             border-radius: 15px;
-            scale :0.9;
+            scale :1.02;
         }
         .logo {
             width: 120px;
