@@ -73,27 +73,30 @@ st.sidebar.write("""
     - 2: Reversible defect
 """)
 
-# Main section for user inputs
-st.subheader("Enter the Features")
-user_input = {
-    'Age': st.slider("Age", 29, 77, 50),
-    'Sex': st.selectbox("Sex", options=[0, 1], format_func=lambda x: "Female" if x == 0 else "Male"),
-    'Cp': st.selectbox("Chest Pain Type", options=[0, 1, 2, 3],
-                       format_func=lambda x: ["Typical Angina", "Atypical Angina", "Non-anginal Pain", "Asymptomatic"][x]),
-    'Trestbps': st.slider("Resting Blood Pressure", 94, 200, 120),
-    'Chol': st.slider("Serum Cholesterol", 126, 564, 200),
-    'Fbs': st.selectbox("Fasting Blood Sugar > 120 mg/dL", options=[0, 1], format_func=lambda x: "False" if x == 0 else "True"),
-    'Restecg': st.selectbox("Resting ECG Results", options=[0, 1, 2],
-                            format_func=lambda x: ["Normal", "ST-T Wave Abnormality", "Left Ventricular Hypertrophy"][x]),
-    'Thalach': st.slider("Maximum Heart Rate Achieved", 71, 202, 150),
-    'Exang': st.selectbox("Exercise-Induced Angina", options=[0, 1], format_func=lambda x: "No" if x == 0 else "Yes"),
-    'Oldpeak': st.slider("Oldpeak", 0.0, 6.2, 1.0),
-    'Slope': st.selectbox("Slope of Peak Exercise ST Segment", options=[0, 1, 2],
-                          format_func=lambda x: ["Upsloping", "Flat", "Downsloping"][x]),
-    'Ca': st.slider("Number of Major Vessels", 0, 3, 1),
-    'Thal': st.selectbox("Thallium Heart Rate", options=[0, 1, 2],
-                         format_func=lambda x: ["Normal", "Fixed Defect", "Reversible Defect"][x]),
-}
+# Main section with two columns
+col1, col2 = st.columns([2, 1])
+
+with col1:
+    st.subheader("Enter the Features")
+    user_input = {
+        'Age': st.slider("Age", 29, 77, 50),
+        'Sex': st.selectbox("Sex", options=[0, 1], format_func=lambda x: "Female" if x == 0 else "Male"),
+        'Cp': st.selectbox("Chest Pain Type", options=[0, 1, 2, 3],
+                           format_func=lambda x: ["Typical Angina", "Atypical Angina", "Non-anginal Pain", "Asymptomatic"][x]),
+        'Trestbps': st.slider("Resting Blood Pressure", 94, 200, 120),
+        'Chol': st.slider("Serum Cholesterol", 126, 564, 200),
+        'Fbs': st.selectbox("Fasting Blood Sugar > 120 mg/dL", options=[0, 1], format_func=lambda x: "False" if x == 0 else "True"),
+        'Restecg': st.selectbox("Resting ECG Results", options=[0, 1, 2],
+                                format_func=lambda x: ["Normal", "ST-T Wave Abnormality", "Left Ventricular Hypertrophy"][x]),
+        'Thalach': st.slider("Maximum Heart Rate Achieved", 71, 202, 150),
+        'Exang': st.selectbox("Exercise-Induced Angina", options=[0, 1], format_func=lambda x: "No" if x == 0 else "Yes"),
+        'Oldpeak': st.slider("Oldpeak", 0.0, 6.2, 1.0),
+        'Slope': st.selectbox("Slope of Peak Exercise ST Segment", options=[0, 1, 2],
+                              format_func=lambda x: ["Upsloping", "Flat", "Downsloping"][x]),
+        'Ca': st.slider("Number of Major Vessels", 0, 3, 1),
+        'Thal': st.selectbox("Thallium Heart Rate", options=[0, 1, 2],
+                             format_func=lambda x: ["Normal", "Fixed Defect", "Reversible Defect"][x]),
+    }
 
 # Convert user input to DataFrame
 user_df = pd.DataFrame([user_input])
@@ -102,9 +105,9 @@ user_df = pd.DataFrame([user_input])
 prediction = model.predict(user_df)[0]
 prediction_percentage = prediction * 100
 
-# Display results
-st.subheader("Prediction Result")
-st.markdown(f"<div style='font-size:28px; font-weight:bold; color:#4CAF50;'>Predicted Likelihood of Heart Disease: {prediction_percentage:.2f}%</div>", unsafe_allow_html=True)
+with col2:
+    st.subheader("Prediction Result")
+    st.markdown(f"<div style='font-size:28px; font-weight:bold; color:#4CAF50;'>Predicted Likelihood of Heart Disease: {prediction_percentage:.2f}%</div>", unsafe_allow_html=True)
 
 # Model evaluation
 st.subheader("Model Evaluation")
