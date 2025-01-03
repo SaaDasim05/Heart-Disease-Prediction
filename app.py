@@ -154,10 +154,33 @@ if st.button("Submit"):
     # Display prediction result
     st.subheader("Prediction Result")
     st.markdown("""
-    <div style='background-color: #ccffb3; border:1px solid #ddd; padding:15px; border-radius:15px; transition :1 s ease-in-out text-align:center;'>
-        <span style='font-size:28px; font-weight:bold; color:#4CAF50;'>Predicted Likelihood of Heart Disease:</span>
+    <style>
+        @keyframes fadeIn {
+            0% { opacity: 0; transform: translateY(20px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+        .result-box {
+            background-color: #cccccc;
+            border: 1px solid #ddd;
+            padding: 15px;
+            border-radius: 15px;
+            text-align: center;
+            animation: fadeIn 1.5s ease-in-out;
+        }
+        .result-box span.title {
+            font-size: 28px;
+            font-weight: bold;
+            color: #4CAF50;
+        }
+        .result-box span.value {
+            font-size: 32px;
+            font-weight: bold;
+        }
+    </style>
+    <div class="result-box">
+        <span class="title">Predicted Likelihood of Heart Disease:</span>
         <br>
-        <span style='font-size:32px; font-weight:bold;'>{:.2f}%</span>
+        <span class="value">{:.2f}%</span>
     </div>
     """.format(prediction_percentage), unsafe_allow_html=True)
 
