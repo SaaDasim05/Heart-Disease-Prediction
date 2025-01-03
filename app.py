@@ -142,6 +142,9 @@ with col1:
 # Convert user input to DataFrame
 user_df = pd.DataFrame([user_input])
 
+if st.button("Submit"):
+    # Convert user input to DataFrame
+    user_df = pd.DataFrame([user_input])
 # Make prediction
 prediction = model.predict(user_df)[0]
 prediction_percentage = prediction * 100
