@@ -5,8 +5,7 @@ from sklearn.linear_model import LinearRegression
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import mean_squared_error
 
-# Load a sample dataset (replace with actual heart disease dataset)
-# This is simulated data for demonstration purposes
+
 data = {
     'Age': np.random.randint(29, 78, 100),
     'Sex': np.random.choice([0, 1], 100),
