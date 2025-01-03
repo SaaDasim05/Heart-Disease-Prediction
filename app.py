@@ -142,14 +142,16 @@ with col1:
 # Convert user input to DataFrame
 user_df = pd.DataFrame([user_input])
 
+# Submit button for prediction
 if st.button("Submit"):
     # Convert user input to DataFrame
     user_df = pd.DataFrame([user_input])
-# Make prediction
-prediction = model.predict(user_df)[0]
-prediction_percentage = prediction * 100
 
-with col2:
+    # Make prediction
+    prediction = model.predict(user_df)[0]
+    prediction_percentage = prediction * 100
+
+    # Display prediction result
     st.subheader("Prediction Result")
     st.markdown("""
     <div style='background-color:#cccccc; border:1px solid #ddd; padding:15px; border-radius:15px; text-align:center;'>
@@ -158,6 +160,7 @@ with col2:
         <span style='font-size:32px; font-weight:bold;'>{:.2f}%</span>
     </div>
     """.format(prediction_percentage), unsafe_allow_html=True)
+
 
 # Model evaluation
 st.subheader("Model Evaluation")
