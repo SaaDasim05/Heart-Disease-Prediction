@@ -152,13 +152,14 @@ if st.button("Submit"):
 
     # Display prediction result
     st.subheader("Prediction Result")
-   st.markdown("""
+    st.markdown("""
     <div style='background-color:#cccccc; border:1px solid #ddd; padding:15px; border-radius:15px; text-align:center; animation: fadeIn 1.5s ease-in-out;'>
         <span style='font-size:28px; font-weight:bold; color:#4CAF50;'>Predicted Likelihood of Heart Disease:</span>
         <br>
         <span style='font-size:32px; font-weight:bold;'>{:.2f}%</span>
     </div>
     """.format(prediction_percentage), unsafe_allow_html=True)
+
 
 # Model evaluation
 st.subheader("Model Evaluation")
