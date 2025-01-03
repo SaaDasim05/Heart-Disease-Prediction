@@ -154,7 +154,7 @@ if st.button("Submit"):
     # Display prediction result
     st.subheader("Prediction Result")
     st.markdown("""
-    <div style='background-color:#cccccc; border:1px solid #ddd; padding:15px; border-radius:15px; text-align:center;'>
+    <div style='background-color: #ccffb3; border:1px solid #ddd; padding:15px; border-radius:15px; transition :1 s ease-in-out text-align:center;'>
         <span style='font-size:28px; font-weight:bold; color:#4CAF50;'>Predicted Likelihood of Heart Disease:</span>
         <br>
         <span style='font-size:32px; font-weight:bold;'>{:.2f}%</span>
